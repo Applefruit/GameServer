@@ -1,0 +1,10 @@
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\bin\Debug\MultiplayerServerUnity.exe.config
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\bin\Debug\MultiplayerServerUnity.exe
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\bin\Debug\MultiplayerServerUnity.pdb
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\obj\Debug\MultiplayerServerUnity.csprojResolveAssemblyReference.cache
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\obj\Debug\MultiplayerServerUnity.UnityServer.resources
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\obj\Debug\MultiplayerServerUnity.Properties.Resources.resources
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\obj\Debug\MultiplayerServerUnity.csproj.GenerateResource.Cache
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\obj\Debug\MultiplayerServerUnity.csproj.CoreCompileInputs.cache
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\obj\Debug\MultiplayerServerUnity.exe
+C:\Users\Dennis\Desktop\NewMulti\MultiplayerServerUnity\MultiplayerServerUnity\obj\Debug\MultiplayerServerUnity.pdb
