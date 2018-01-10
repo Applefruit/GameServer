@@ -19,10 +19,12 @@ namespace MultiplayerServerUnity.Networking
         private NetworkReceiver m_NetworkReceiver;
         private byte[] m_Buffer;
 
+        private const int BUFFERSIZE = 4096;
+
         public void InitiliazeClient(NetworkReceiver networkReceiver)
         {
-            Client_Socket.ReceiveBufferSize = 4096;
-            Client_Socket.SendBufferSize = 4096;
+            Client_Socket.ReceiveBufferSize = BUFFERSIZE;   //4096
+            Client_Socket.SendBufferSize = BUFFERSIZE;      //4096
 
             Client_Stream = Client_Socket.GetStream();
 

@@ -16,7 +16,9 @@ namespace MultiplayerServerUnity.Networking.Receiving
         private int m_ClientToken;
 
         private BaseNetwork m_BaseNetwork;
+
         private LoginHandler m_LoginHandler;
+        private MovementHandler m_MovementHandler;
 
         public NetworkReceiver(BaseNetwork baseNetwork)
         {
@@ -24,12 +26,7 @@ namespace MultiplayerServerUnity.Networking.Receiving
             m_BaseNetwork = baseNetwork;
 
             m_LoginHandler = new LoginHandler();
-            /*
-
-            Setup all packages handlers! :).
-
-
-            */
+            m_MovementHandler = new MovementHandler();
         }
 
         public void HandleData(byte[] data, int client)
@@ -64,6 +61,9 @@ namespace MultiplayerServerUnity.Networking.Receiving
                     break;
                 case PackageHandlerEnum.LoginPacket:
                     m_LoginHandler.HandleLogin(Data);
+                    break;
+                case PackageHandlerEnum.TransformPacket:
+                    m_MovementHandler.HandleMovementPackage(m_ClientToken, Data);
                     break;
 
             }

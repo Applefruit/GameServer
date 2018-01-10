@@ -59,7 +59,8 @@ namespace MultiplayerServerUnity.Networking.PackageHandlers
         {
             ByteBuffer buffer = new ByteBuffer();
             buffer.WriteInteger((int)PackageHandlerEnum.LoginPacket);
-            m_UnityServer.NetworkBase.NetworkSend.SendTo(1, buffer.ToArray());
+            buffer.WriteInteger(clientID);
+            m_UnityServer.NetworkBase.NetworkSend.SendTo(clientID, buffer.ToArray());
         }
     }
 }

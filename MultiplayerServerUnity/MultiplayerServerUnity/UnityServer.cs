@@ -51,12 +51,12 @@ namespace MultiplayerServerUnity
         /// <summary>
         /// Initliaze the server , (Starting up on click)
         /// </summary>
-        /// <param name="sender"></param>
         private void BT_ServerButton_Click(object sender, EventArgs e)
         {
             NetworkBase.InitiliazeServer();
         }
 
+        //TODO: Add username instead of client
         private void Debug_Bt_Click(object sender, EventArgs e)
         {
             ByteBuffer buffer = new ByteBuffer();

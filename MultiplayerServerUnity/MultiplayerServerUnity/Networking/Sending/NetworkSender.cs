@@ -18,6 +18,8 @@ namespace MultiplayerServerUnity.Networking.Sending
             m_UnityServer = UnityServer.Instance;
         }
 
+        #region SendToSpecfic
+
         /// <summary>
         /// Send a data to a specific client.
         /// </summary>
@@ -26,7 +28,7 @@ namespace MultiplayerServerUnity.Networking.Sending
 
             ByteBuffer buffer = new ByteBuffer();
             buffer.WriteBytes(data);
-
+            
             if (m_BaseNetwork.GameClients[client_Index].Client_Socket != null)
                 m_BaseNetwork.GameClients[client_Index].Client_Stream.BeginWrite(buffer.ToArray(), 0, buffer.ToArray().Length, null, null);
             else m_UnityServer.AppendNewLog("Something went wrong when sending a packet to client: " + client_Index);
@@ -34,6 +36,30 @@ namespace MultiplayerServerUnity.Networking.Sending
             buffer = null;
         }
 
+        /// <summary>
+        /// Send to client by their token. (Later would be replaced by their username. )
+        /// </summary>
+        public void SendToByToken(int UniqueToken, byte[] data)
+        {
+            ByteBuffer byteBuffer = new ByteBuffer();
+            byteBuffer.WriteBytes(data);
+
+            for (int i = 1; i < m_UnityServer.LocalPlayerDatabase.ActiveClients.Length; i++)
+            {
+               if(m_UnityServer.LocalPlayerDatabase.ActiveClients[i].UniqueID == UniqueToken)
+                {
+                    int client_Index = m_UnityServer.LocalPlayerDatabase.ActiveClients[i].ClientID;
+                    if (m_BaseNetwork.GameClients[client_Index].Client_Socket != null)
+                    {
+                        m_BaseNetwork.GameClients[client_Index].Client_Stream.BeginWrite(byteBuffer.ToArray(), 0, byteBuffer.ToArray().Length, null, null);
+                    }
+                }
+            }
+
+        }
+#endregion
+
+        #region AllSender
         /// <summary>
         /// Sends the data to all active clients
         /// </summary>
@@ -48,7 +74,9 @@ namespace MultiplayerServerUnity.Networking.Sending
                 }
             }
         }
+#endregion
 
+        #region ExpectionSender
         /// <summary>
         /// Sends the data to all active clients expect one.
         /// </summary>
@@ -58,10 +86,24 @@ namespace MultiplayerServerUnity.Networking.Sending
             {
                 if (m_BaseNetwork.GameClients[i].Client_Socket != null)
                 {
-                    if(i != exception_Client_Index)
+                    if (i != exception_Client_Index)
                         SendTo(i, data);
                 }
             }
         }
+
+        //BY TOKEN
+        public void SendToAllExceptByToken(int exception_Token, byte[] data)
+        {
+            for (int i = 1; i < m_BaseNetwork.GameClients.Length; i++)
+            {
+                if (m_BaseNetwork.GameClients[i].Client_Socket != null)
+                {
+                    if (i != exception_Token)
+                        SendToByToken(exception_Token, data);
+                }
+            }
+        }
+#endregion
     }
 }

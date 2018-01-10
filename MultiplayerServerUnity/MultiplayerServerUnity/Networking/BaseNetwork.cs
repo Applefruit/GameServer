@@ -20,6 +20,9 @@ namespace MultiplayerServerUnity.Networking
         private UnityServer m_UnityServer;
 
 
+        /// <summary>
+        /// Initliaze the game server - By button
+        /// </summary>
         public void InitiliazeServer()
         {
             m_UnityServer = UnityServer.Instance;
@@ -66,7 +69,7 @@ namespace MultiplayerServerUnity.Networking
                     GameClients[i].Client_IpAdress = client.Client.RemoteEndPoint.ToString();
                     GameClients[i].InitiliazeClient(m_NetworkReceiver);
 
-                    m_UnityServer.AppendNewLog("A new player has joined! With ID: " + i + " From: " + GameClients[i].Client_IpAdress);
+                    m_UnityServer.AppendNewLog("A new player has joined! With Client-ID: " + i + " From: " + GameClients[i].Client_IpAdress);
 
 
                     ByteBuffer byteBuffer = new ByteBuffer();
