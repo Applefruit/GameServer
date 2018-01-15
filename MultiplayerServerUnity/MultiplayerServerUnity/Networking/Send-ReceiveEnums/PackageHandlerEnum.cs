@@ -12,4 +12,9 @@ namespace MultiplayerServerUnity.Networking.Send_ReceiveEnums
         TransformPacket = 400,
         LoginPacket = 1200,
     }
+
+    public enum PackageSenderEnum
+    {
+        ReturnPackage = 1201,
+    }
 }

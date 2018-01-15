@@ -20,6 +20,8 @@ namespace MultiplayerServerUnity
         public BaseNetwork NetworkBase;
         public LocalDatabase LocalPlayerDatabase;
 
+        private int m_PlayerAmount = 0;
+
         public UnityServer()
         {
             InitializeComponent();
@@ -46,6 +48,21 @@ namespace MultiplayerServerUnity
             if (TB_ConsoleLog.InvokeRequired)
                 Invoke(new Action<string>(s => TB_ConsoleLog.AppendText(s)), appendString);
             else TB_ConsoleLog.AppendText(appendString);
+        }
+
+
+        public void AppendNewPlayer(bool joined)
+        {
+            if (joined)
+            {
+                m_PlayerAmount++;
+                LB_ConnectedPlayers.Invoke((MethodInvoker)(() => LB_ConnectedPlayers.Text = "Connected players: " + m_PlayerAmount));
+            }
+            else
+            {
+                m_PlayerAmount--;
+                LB_ConnectedPlayers.Invoke((MethodInvoker)(() => LB_ConnectedPlayers.Text = "Connected players: " + m_PlayerAmount));
+            }
         }
 
         /// <summary>

@@ -70,6 +70,7 @@ namespace MultiplayerServerUnity.Networking
                     GameClients[i].InitiliazeClient(m_NetworkReceiver);
 
                     m_UnityServer.AppendNewLog("A new player has joined! With Client-ID: " + i + " From: " + GameClients[i].Client_IpAdress);
+                    m_UnityServer.AppendNewPlayer(true);
 
 
                     ByteBuffer byteBuffer = new ByteBuffer();

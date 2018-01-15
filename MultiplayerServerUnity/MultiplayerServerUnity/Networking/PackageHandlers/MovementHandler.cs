@@ -17,20 +17,22 @@ namespace MultiplayerServerUnity.Networking.PackageHandlers
             m_Localdatabase = UnityServer.Instance.LocalPlayerDatabase;
         }
 
-        public void HandleMovementPackage(int ClientID, byte[] data)
+        public void HandleMovementPackage(int token, byte[] data)
         {
             ByteBuffer byteBuffer = new ByteBuffer();
             byteBuffer.WriteBytes(data);
 
             for (int i = 1; i < BaseInformationReader.Max_Players; i++)
             {
-                if(m_Localdatabase.ActiveClients[i].ClientID == ClientID)
+                if(m_Localdatabase.ActiveClients[i].UniqueID == token)
                 {
                     int packageID = byteBuffer.ReadInteger();
                     int UniqueTokenRd = byteBuffer.ReadInteger();
 
                     byte[] PositionBytes = byteBuffer.ReadBytes(12); //Vector3 = 12 bytes ;) (3x4)
                     Vector3 position = Converter.ByteToVector3(PositionBytes);
+
+                    UnityServer.Instance.AppendNewLog("Client: " + m_Localdatabase.ActiveClients[i].ClientID + " - - " +  position.X + "/" + position.Y + "/" + position.Z);
 
                     CheckIfValidPosition(position, i);
                 }
@@ -47,8 +49,7 @@ namespace MultiplayerServerUnity.Networking.PackageHandlers
                 return;
             } else
             {
-                //RESET POSITION
-                //SEND RETURN PACKAGE TO CLIENT
+
             }
         } 
     }
